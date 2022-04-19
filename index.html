@@ -3,23 +3,34 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Location-based AR.js demo</title>
+    <title>GeoAR.js demo</title>
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
   </head>
+
   <body style="margin: 0; overflow: hidden;">
     <a-scene
       vr-mode-ui="enabled: false"
       embedded
       arjs="sourceType: webcam; debugUIEnabled: false;"
     >
-      <a-box
-        material="color: red"
-        gps-entity-place="latitude: 3.125967; longitude: 101.571248;"
-        scale="0.5 0.5 0.5"
-      ></a-box>
-      <a-camera gps-camera="minDistance:30; maxDistance:100" rotation-reader> </a-camera>
+	
+		<a-assets>
+                <video
+                crossorigin="anonymous"
+                id="test"
+                autoplay
+                loop="true"
+                type="video/mp4"
+                preload="auto"
+                src="https://cdn.glitch.me/817960be-748e-439e-af3e-35880a3fb9c0/intro.mp4?v=1648606427790">
+                </video>
+            </a-assets>
+			
+			<a-video id="video-screen" src="#test" scale="150 150 150" look-at="[gps-camera]" gps-entity-place="longitude: 101.571239; latitude: 3.125867;"></a-video>
+		
+      <a-camera gps-camera rotation-reader> </a-camera>
     </a-scene>
   </body>
 </html>
