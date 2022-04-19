@@ -28,9 +28,43 @@
                 </video>
             </a-assets>
 			
-			<a-video id="video-screen" src="#test" scale="150 150 150" look-at="[gps-camera]" gps-entity-place="longitude: 101.571238; latitude: 3.125928;"></a-video>
+			<a-video id="video-screen" src="#test" scale="10 10 10" look-at="[gps-camera]" gps-entity-place="longitude: 101.571239; latitude: 3.125867;"></a-video>
 		
       <a-camera gps-camera rotation-reader> </a-camera>
     </a-scene>
+	
+	<script>
+            AFRAME.registerComponent('vidhandler', {
+                init: function() {
+                    this.toggle = false;
+                    this.vid = document.querySelector("#test");
+                    this.vid.pause();
+                },
+                tick: function() {
+                    if(this.el.object3D.visible == true) {
+                        if(!this.toggle) {
+                            this.toggle = true;
+                            this.vid.play();
+                        }
+                    } else {
+                        this.toggle = false;
+                        this.vid.pause();
+                    }
+                }
+            });
+        </script>
+
+        <script>
+            window.addEventListener('click', function() {
+                var v = document.querySelector("#test");
+                
+                if(v.paused) {
+                    v.play();
+                } else {
+                    v.pause();
+                }
+            });
+        </script>
+	
   </body>
 </html>
